@@ -108,7 +108,9 @@ az ad app create --display-name DevopsDemoApp
 
 运行成功后，会在 Microsoft Entra Id 中会创建一个名为 DevopsDemoApp 的应用程序。
 
-# 2. 创建服务主体。 将 `$appID` 替换为 JSON 输出中的 `appId`。
+# 2. 创建服务主体。 
+
+将 `$appID` 替换为 JSON 输出中的 `appId`。
 
 ```bash
 az ad sp create --id $appID
@@ -286,7 +288,7 @@ az ad app federated-credential delete --id 3aa94c7d-a89b-46c0-90b0-dcde9a16874a 
 - `AZURE_TENANT_ID`：租户 ID，即 `appOwnerOrganizationId`。
 - `AZURE_SUBSCRIPTION_ID`：订阅 ID，即 `subscriptionId`。
 
-6. 将工作流文件添加到 GitHub 存储库
+# 6. 将工作流文件添加到 GitHub 存储库
 
 <details>
 <summary>工作流文件</summary>
