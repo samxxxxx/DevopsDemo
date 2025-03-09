@@ -31,7 +31,7 @@ jobs:
 
       # Setup .NET Core SDK
       - name: Setup .NET Core 设置 .NET Core SDK
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }} 
       
@@ -41,6 +41,12 @@ jobs:
           dotnet restore
           dotnet build --configuration Release
           dotnet publish -c Release --property:PublishDir='${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/publish' 
+
+      - name: Upload artifact for deployment job 上传 artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: .net-app
+          path: ${{env.DOTNET_ROOT}}/publish
           
       # Deploy to Azure Web apps
       - name: 'Run Azure webapp deploy action using publish profile credentials'

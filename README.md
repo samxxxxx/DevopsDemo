@@ -215,6 +215,9 @@ az role assignment create --role contributor --subscription 35686e51-5090-4d44-8
 
 将修改后的 JSON 保存为 `credential.json` 文件。
 
+**要注意 `issuer` 的结尾不能以 / 结尾，否则会造成 Azure CLI 登录命令执行失败**
+**`issure` 必须是 `https://token.actions.githubusercontent.com` 而不能是 `https://token.actions.githubusercontent.com/` 。**
+
 ```bash
 az ad app federated-credential create --id <APPLICATION-OBJECT-ID> --parameters credential.json
 ("credential.json" contains the following content)
@@ -228,7 +231,8 @@ az ad app federated-credential create --id <APPLICATION-OBJECT-ID> --parameters 
     ]
 }
 
-az ad app federated-credential create --id 3aa94c7d-a89b-46c0-90b0-dcde9a16874a --parameters '{ "name": "DevopsDemoCREDENTIAL", "issuer": "https://token.actions.githubusercontent.com/", "subject": "repo:samxxxxx/DevopsDemo:ref:refs/heads/main", "description": "设置 GitHub 登录的 Azure 联合凭据", "audiences": [ "api://AzureADTokenExchange" ] }'
+# 拼接结果：
+az ad app federated-credential create --id 3aa94c7d-a89b-46c0-90b0-dcde9a16874a --parameters '{ "name": "DevopsDemoCREDENTIAL", "issuer": "https://token.actions.githubusercontent.com", "subject": "repo:samxxxxx/DevopsDemo:ref:refs/heads/main", "description": "设置 GitHub 登录的 Azure 联合凭据", "audiences": [ "api://AzureADTokenExchange" ] }'
 
 ```
 
@@ -246,6 +250,20 @@ az ad app federated-credential create --id 3aa94c7d-a89b-46c0-90b0-dcde9a16874a 
   "name": "DevopsDemoCREDENTIAL",
   "subject": "repo:samxxxxx/DevopsDemo:ref:refs/heads/main"
 }
+```
+
+删除联合标识凭据
+
+--id
+应用程序的 appId、identifierUri 或 ID（以前称为 objectId）。
+
+--federated-credential-id
+联合标识凭据的 ID 或名称。
+
+
+```bash
+az ad app federated-credential delete --id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx --federated-credential-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+az ad app federated-credential delete --id 3aa94c7d-a89b-46c0-90b0-dcde9a16874a --federated-credential-id 9712db84-fddd-4659-8707-0fc63a3e7cdf
 ```
 
 
