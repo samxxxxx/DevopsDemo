@@ -16,7 +16,7 @@ env:
   DOTNET_VERSION: '9.0.x'           # set this to the dot net version to use
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
