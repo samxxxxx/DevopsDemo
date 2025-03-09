@@ -4,7 +4,7 @@
 
 以下设置为手动通过 Azure CLI 部署 Aspnet web app 的方法，参考[链接](https://docs.azure.cn/zh-cn/app-service/deploy-github-actions?tabs=openid%2Caspnetcore)
 
-身份验证，使用 OpenID Connect
+身份验证，使用官方推荐的 OpenID Connect
 
 首先在 Azure 终端，尝试登录到 Microsoft Azure CLI 
 
