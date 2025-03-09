@@ -1,5 +1,7 @@
 # DevopsDemo
 
+![](./doc/imgs/slot_flow_code_diagam.png)
+
 # Azure 终端登录
 
 以下设置为手动通过 Azure CLI 部署 Aspnet web app 的方法，参考[链接](https://docs.azure.cn/zh-cn/app-service/deploy-github-actions?tabs=openid%2Caspnetcore)
